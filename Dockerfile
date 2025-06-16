@@ -1,10 +1,10 @@
-# Imagem base
 FROM python:3.11-slim
 
-# Instalar dependências do sistema
+# Instalar dependências do sistema necessárias
 RUN apt-get update && apt-get install -y \
     cmake \
     build-essential \
+    git \
     libopenblas-dev \
     liblapack-dev \
     libx11-dev \
@@ -12,21 +12,17 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Criar diretório de trabalho
+# Configuração para melhorar compatibilidade do dlib
+ENV LDFLAGS="-fno-lto"
+
 WORKDIR /app
 
-# Copiar dependências primeiro
 COPY requirements.txt .
-
-# Instalar dependências Python
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --prefer-binary --no-cache-dir -r requirements.txt
 
-# Copiar todo o código
 COPY . .
 
-# Expor porta (ajuste se necessário)
 EXPOSE 8000
-
-# Comando para rodar
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
