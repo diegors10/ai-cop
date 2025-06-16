@@ -1,0 +1,9 @@
+[phases.setup]
+nixPkgs = [
+  "python3",
+  "gcc",
+  "cmake",
+  "libopenblas-dev",
+  "liblapack-dev",
+  "libx11-dev"
+]
