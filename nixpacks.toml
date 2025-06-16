@@ -6,7 +6,7 @@ nixPkgs = [
   "lapack",
   "openblas",
   "xorg.libX11",
-  "libglib",
+  "glib",
   "libpng",
   "libjpeg",
   "zlib",
