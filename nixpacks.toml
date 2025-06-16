@@ -3,7 +3,13 @@ nixPkgs = [
   "python3",
   "gcc",
   "cmake",
-  "libopenblas-dev",
-  "liblapack-dev",
-  "libx11-dev"
+  "lapack",
+  "openblas",
+  "xorg.libX11"
 ]
+
+[phases.install]
+nixEnvVars = {
+  DLIB_USE_CUDA = "0",
+  USE_AVX_INSTRUCTIONS = "1"
+}
