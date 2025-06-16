@@ -10,9 +10,9 @@ nixPkgs = [
   "libpng",
   "libjpeg",
   "zlib",
-  "libxext",
-  "libsm",
-  "libice"
+  "xorg.libXext",
+  "xorg.libSM",
+  "xorg.libICE"
 ]
 
 [phases.install]
